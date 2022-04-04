@@ -27,6 +27,10 @@ app.get("/api/hello", function (req, res) {
 
 //second commit
 
+app.get('api/whoami',(req,res) => {
+  res.json({baseUrl: req.baseUrl});
+});
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
