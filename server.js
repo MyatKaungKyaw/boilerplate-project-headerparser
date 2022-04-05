@@ -27,11 +27,20 @@ app.get("/api/hello", function (req, res) {
 
 //second commit
 
-app.get('api/whoami',(req,res) => {
-  res.json({baseUrl: req.baseUrl});
+const path =  (req,res,next) => {
+  console.log('Route :',req.path);
+  next();
+}
+
+app.get('/api/whoami',path,(req,res) => {
+  res.json({
+    ip: req.ip,
+    ips: req.ips,
+    subDomain : req.subdomains,
+  });
 });
 
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
+var listener = app.listen(8080, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
